@@ -1,0 +1,21 @@
+.modal-open {
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.12);
+  -webkit-animation-duration: .2s;
+  animation-duration: .2s;
+}
+.bold {
+  font-weight: 500;
+}
+.input-range {
+  position: relative;
+}

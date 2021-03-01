@@ -1,0 +1,18 @@
+$MAIN_COLOR: #1E1E1E;
+
+$BASE_FONT: GothamPro, Helvetica, Arial, sans-serif;
+$BASE_SIZE: 16px;
+$LINE_HEIGHT: 1.3;
+
+$tablet: 1024px;
+$error: #D0021B;
+$partnerColor: var(--partner-color);
+$invertPartnerColor: var(--invert-partner-color);
+$lightPartnerColor: var(--light-partner-color);
+$darkPartnerColor: var(--dark-partner-color);
+$commonContrast: var(--common-contrast);
+$commonContrastHover: var(--common-contrast-hover);
+$partnerColorHover: $lightPartnerColor;
+@if $commonContrastHover == "white"{
+  $partnerColorHover : $darkPartnerColor;
+}
