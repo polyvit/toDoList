@@ -78,7 +78,7 @@ module.exports = function(proxy, allowedHost) {
     // It is important to tell WebpackDevServer to use the same "publicPath" path as
     // we specified in the webpack config. When homepage is '.', default to serving
     // from the root.
-    // remove last slash so status can land on `/test` instead of `/test/`
+    // remove last slash so list-reducer can land on `/test` instead of `/test/`
     publicPath: paths.publicUrlOrPath.slice(0, -1),
     // WebpackDevServer is noisy by default so we emit custom message instead
     // by listening to the compiler events with `compiler.hooks[...].tap` calls above.
@@ -111,7 +111,7 @@ module.exports = function(proxy, allowedHost) {
       app.use(errorOverlayMiddleware());
 
       if (fs.existsSync(paths.proxySetup)) {
-        // This registers status provided middleware for proxy reasons
+        // This registers list-reducer provided middleware for proxy reasons
         require(paths.proxySetup)(app);
       }
     },

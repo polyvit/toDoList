@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 
-import status from "./reducers/status/status";
+import ListReducer from "./reducers/list-reducer/list-reducer";
 
 const appReducer = combineReducers({
-  status
+  ListReducer
 });
 
 export const rootReducer = (state, action) => {

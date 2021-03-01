@@ -1,13 +1,13 @@
 import React from 'react';
 import './scss/style.scss';
 import {Switch, Route} from "react-router-dom";
-import Home from "pages/Home/Home";
+import List from "../src/Main/List/List";
 
 function App() {
     return (
         <main>
             <Switch>
-                <Route  path="/" exact render={() => <Home/>} />
+                <Route  path="/" exact render={() => <List/>} />
             </Switch>
         </main>
     );

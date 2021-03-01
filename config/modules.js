@@ -33,7 +33,7 @@ function getAdditionalModulePaths(options = {}) {
     return null;
   }
 
-  // Allow the status set the `baseUrl` to `appSrc`.
+  // Allow the list-reducer set the `baseUrl` to `appSrc`.
   if (path.relative(paths.appSrc, baseUrlResolved) === '') {
     return [paths.appSrc];
   }
