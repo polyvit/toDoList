@@ -6,21 +6,21 @@ const ADD_TASK = 'ADD_TASK';
 
 const initialState = {
     tasks: [
-        {text: "task 1"},
-        {text: "task 2"},
-        {text: "task 3"}
+        {text: "task 1", id: 1, isCompleted: false},
+        {text: "task 2", id: 2, isCompleted: false},
+        {text: "task 3", id: 3, isCompleted: false}
     ],
-    taskText: '',
-    isCompleted: false
+    newTask: ""
 };
 
 const ListReducer = (state = initialState, action) => {
-    const {type, payload} = action;
-    switch (type) {
+    switch (action.type) {
         case ADD_TASK: {
-            return produce(state, (draft) => {
-                draft.taskText = payload.task
-            });
+            let newText = action.newText
+            return {
+                ...state,
+                tasks: [...state.tasks, {text: newText, id: 4, isCompleted: false}]
+            }
         }
         default:
             return state;
@@ -41,18 +41,20 @@ const ListReducer = (state = initialState, action) => {
 //     };
 // }
 
+export const addNewTaskSuccess = (text) => {
+    return {
+        type: ADD_TASK,
+        newText: text
+    };
+};
+
 export const stateSelector = state => state[ListReducer];
 
 export const tickSelector = createSelector(stateSelector, state => state.tick);
 
 
 
-export const addNewTaskSuccess = task => {
-    return {
-        type: ADD_TASK,
-        payload: task,
-    };
-};
+
 
 
 export default ListReducer

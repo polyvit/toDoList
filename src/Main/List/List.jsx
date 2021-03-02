@@ -1,11 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {
+    addNewTaskSuccess,
     loadData,
 } from "../../redux/reducers/list-reducer/list-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import './list.scss'
 
-const List = ({smallImgStatus}) => {
+const List = () => {
     //const socialPopup = useSelector(socialPopupSelector);
 
     // useEffect(() => {
@@ -13,10 +14,16 @@ const List = ({smallImgStatus}) => {
     //     // eslint-disable-line react-hooks/exhaustive-deps
     // }, []);
 
+    let [taskText, setTaskText] = useState("")
+
     const dispatch = useDispatch()
 
-    const addNewTask = () => {
+    const fillTheInput = (e) => {
+        setTaskText(e.target.value)
+    }
 
+    const addNewTask = () => {
+        dispatch(addNewTaskSuccess(taskText))
     }
 
     return (
@@ -24,13 +31,10 @@ const List = ({smallImgStatus}) => {
             <div className='square'>
                 <h1>To-do list</h1>
                 <div>
-                    <input value="Add new message"/>
+                    <input onChange={fillTheInput} value={taskText}/>
                     <button onClick={addNewTask}>Add</button>
                 </div>
                 <div>задача 1</div>
-                <div>задача 2</div>
-                <div>задача 3</div>
-                <div>задача 4</div>
             </div>
         </div>
     );
