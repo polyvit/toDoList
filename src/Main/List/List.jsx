@@ -1,20 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {
-    addNewTaskSuccess,
-    loadData,
-} from "../../redux/reducers/list-reducer/list-reducer";
+    addNewTaskSuccess, getTasks,
+    loadData, tasksSelector,
+} from "../../redux/reducers/list";
 import {useDispatch, useSelector} from "react-redux";
 import './list.scss'
 
 const List = () => {
-    //const socialPopup = useSelector(socialPopupSelector);
+    const tasks = useSelector(tasksSelector)
 
-    // useEffect(() => {
-    //     dispatch(loadData(window.location.pathname.slice(1) || '123'))
-    //     // eslint-disable-line react-hooks/exhaustive-deps
-    // }, []);
-
-    let [taskText, setTaskText] = useState("")
+    const [taskText, setTaskText] = useState("")
 
     const dispatch = useDispatch()
 
@@ -34,10 +29,16 @@ const List = () => {
                     <input onChange={fillTheInput} value={taskText}/>
                     <button onClick={addNewTask}>Add</button>
                 </div>
-                <div>задача 1</div>
+                {tasks.map( task => <div>{task.text}</div>)}
+
             </div>
         </div>
     );
 }
 
 export default List;
+
+// useEffect(() => {
+//     dispatch(loadData(window.location.pathname.slice(1) || '123'))
+//     // eslint-disable-line react-hooks/exhaustive-deps
+// }, []);

@@ -1,16 +1,16 @@
 import produce from "immer";
 import {createSelector} from 'reselect';
 
-
-const ADD_TASK = 'ADD_TASK';
+const List = 'list';
+const ADD_TASK = `${List}/ADD_TASK`;
 
 const initialState = {
     tasks: [
         {text: "task 1", id: 1, isCompleted: false},
         {text: "task 2", id: 2, isCompleted: false},
-        {text: "task 3", id: 3, isCompleted: false}
-    ],
-    newTask: ""
+        {text: "task 3", id: 3, isCompleted: false},
+        {text: "task 4", id: 4, isCompleted: false},
+    ]
 };
 
 const ListReducer = (state = initialState, action) => {
@@ -19,7 +19,7 @@ const ListReducer = (state = initialState, action) => {
             let newText = action.newText
             return {
                 ...state,
-                tasks: [...state.tasks, {text: newText, id: 4, isCompleted: false}]
+                tasks: [...state.tasks, {text: newText, id: (new Date()).getTime(), isCompleted: false}]
             }
         }
         default:
@@ -48,12 +48,14 @@ export const addNewTaskSuccess = (text) => {
     };
 };
 
-export const stateSelector = state => state[ListReducer];
+export const stateSelector = state => state[List];
 
-export const tickSelector = createSelector(stateSelector, state => state.tick);
+export const tasksSelector = createSelector(stateSelector, state => state.tasks);
 
 
-
+// export const getTasks = (state) => {
+//     return state.tasks
+// }
 
 
 
