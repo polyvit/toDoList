@@ -3,10 +3,11 @@ import {createSelector} from 'reselect';
 
 const List = 'list';
 const ADD_TASK = `${List}/ADD_TASK`;
+const REMOVE_TASK = `${List}/REMOVE_TASK`;
 
 const initialState = {
     tasks: [
-        {text: "task 1", id: 1, isCompleted: false},
+        {text: "Купить хлеб", id: 1, isCompleted: false},
         {text: "task 2", id: 2, isCompleted: false},
         {text: "task 3", id: 3, isCompleted: false},
         {text: "task 4", id: 4, isCompleted: false},
@@ -22,6 +23,12 @@ const ListReducer = (state = initialState, action) => {
                 tasks: [...state.tasks, {text: newText, id: (new Date()).getTime(), isCompleted: false}]
             }
         }
+        case REMOVE_TASK: {
+            return {
+                ...state,
+                tasks: [...state.tasks].filter( task => task.id !== action.id)
+        }
+            }
         default:
             return state;
     }
@@ -46,6 +53,9 @@ export const addNewTaskSuccess = (text) => {
         type: ADD_TASK,
         newText: text
     };
+};
+export const removeTaskSuccess = (id) => {
+    return {type: REMOVE_TASK, id};
 };
 
 export const stateSelector = state => state[List];

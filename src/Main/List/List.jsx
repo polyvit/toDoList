@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
-    addNewTaskSuccess, getTasks,
-    loadData, tasksSelector,
+    addNewTaskSuccess, tasksSelector,
 } from "../../redux/reducers/list";
 import {useDispatch, useSelector} from "react-redux";
 import './list.scss'
+import ToDoItem from "./toDoItem";
 
 const List = () => {
     const tasks = useSelector(tasksSelector)
@@ -24,13 +24,14 @@ const List = () => {
     return (
         <div className='square_wrapper'>
             <div className='square'>
-                <h1>To-do list</h1>
+                <div className='title_wrapper'><h1>To-do list</h1></div>
                 <div>
                     <input onChange={fillTheInput} value={taskText}/>
                     <button onClick={addNewTask}>Add</button>
                 </div>
-                {tasks.map( task => <div>{task.text}</div>)}
-
+                <div className='tasks_wrapper'>
+                {tasks.map( task => <ToDoItem text={task.text} id={task.id}/>)}
+                </div>
             </div>
         </div>
     );
